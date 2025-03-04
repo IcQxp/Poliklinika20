@@ -70,26 +70,32 @@ namespace Poliklinika20.Pages.Lists
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
-        {//изменение
-
+        {
             var compl = CompletedServicesDataGrid.SelectedItem as completed_services;
             if (compl == null)
-                MessageBox.Show("Для редактирования необходимо выбрать услугу заказа");
-            else
             {
-                var service = ServicesDataGrid.SelectedItem as services;
-                var analyzer = AnalyserDataGrid.SelectedItem as analyzers;
-                var user = UserDataGrid.SelectedItem as users;
-
-                if (service == null || analyzer == null || user == null)
-                    MessageBox.Show("Для редактирования необходимо выбрать новые значения");
-                else
-                {
-                    compl.users = user;
-                    compl.services = service;
-                    compl.analyzers = analyzer;
-                }
+                MessageBox.Show("Для редактирования необходимо выбрать услугу заказа");
+                return;
             }
+
+            var service = ServicesDataGrid.SelectedItem as services;
+            var analyzer = AnalyserDataGrid.SelectedItem as analyzers;
+            var user = UserDataGrid.SelectedItem as users;
+
+            if (service == null || analyzer == null || user == null)
+            {
+                MessageBox.Show("Для редактирования необходимо выбрать новые значения");
+                return;
+            }
+
+            // Обновляем выбранный элемент
+            compl.users = user;
+            compl.services = service;
+            compl.analyzers = analyzer;
+
+            // Обновляем отображение данных в DataGrid
+            CompletedServicesDataGrid.ItemsSource = null; // Сбрасываем источник данных
+            CompletedServicesDataGrid.ItemsSource = list; // Устанавливаем обновленный источник данных
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -100,36 +106,36 @@ namespace Poliklinika20.Pages.Lists
                 try
                 {
                     decimal cost = 0;
-                foreach(var elem in list)
-                {
-                    cost += elem.services.cost;
-                }
-                _order.total_cost = cost;
-                _order.id_patient = _patient.id_patient;
-                _order.status = "новый";
-                _order.creation_date = DateTime.Now;
-                polikEntities6.GetContext().orders.Add(_order);
-                polikEntities6.GetContext().SaveChanges();
-                var orderNow = polikEntities6.GetContext().orders
-                    .Where(or => or.total_cost == cost && or.id_patient == _patient.id_patient)
-                    .OrderByDescending(or => or.id_order) // Предполагается, что id_order является автоинкрементным
-                    .FirstOrDefault();
-                foreach (var elem in list)
-                {
-                    elem.id_lab_technician = elem.users.id_user;
-                    elem.id_order = orderNow.id_order;
-                    elem.id_service = elem.services.id_service;
-                    elem.id_analyzer = elem.analyzers.id_analyzer;
-                    elem.service_status = "новая";
-                    elem.completion_time_days = (short)(elem.services.completion_period_days+elem.services.average_deviation_days);
+                    foreach (var elem in list)
+                    {
+                        cost += elem.services.cost;
+                    }
+                    _order.total_cost = cost;
+                    _order.id_patient = _patient.id_patient;
+                    _order.status = "новый";
+                    _order.creation_date = DateTime.Now;
+                    polikEntities6.GetContext().orders.Add(_order);
+                    polikEntities6.GetContext().SaveChanges();
+                    var orderNow = polikEntities6.GetContext().orders
+                        .Where(or => or.total_cost == cost && or.id_patient == _patient.id_patient)
+                        .OrderByDescending(or => or.id_order) // Предполагается, что id_order является автоинкрементным
+                        .FirstOrDefault();
+                    foreach (var elem in list)
+                    {
+                        elem.id_lab_technician = elem.users.id_user;
+                        elem.id_order = orderNow.id_order;
+                        elem.id_service = elem.services.id_service;
+                        elem.id_analyzer = elem.analyzers.id_analyzer;
+                        elem.service_status = "новая";
+                        elem.completion_time_days = (short)(elem.services.completion_period_days + elem.services.average_deviation_days);
 
 
-                    polikEntities6.GetContext().completed_services.Add(elem);
+                        polikEntities6.GetContext().completed_services.Add(elem);
 
-                }
-                polikEntities6.GetContext().SaveChanges();
-                NavigationService.GoBack();
-                NavigationService.GoBack();
+                    }
+                    polikEntities6.GetContext().SaveChanges();
+                    NavigationService.GoBack();
+                    NavigationService.GoBack();
 
 
                 }
