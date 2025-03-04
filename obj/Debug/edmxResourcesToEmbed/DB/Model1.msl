@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище polikModelContainer" CdmEntityContainer="polikEntities6">
+    <EntitySetMapping Name="analyzers">
+      <EntityTypeMapping TypeName="polikModel.analyzers">
+        <MappingFragment StoreEntitySet="analyzers">
+          <ScalarProperty Name="id_analyzer" ColumnName="id_analyzer" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="last_maintenance_date" ColumnName="last_maintenance_date" />
+          <ScalarProperty Name="manufacture_year" ColumnName="manufacture_year" />
+          <ScalarProperty Name="is_archived" ColumnName="is_archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="completed_services">
+      <EntityTypeMapping TypeName="polikModel.completed_services">
+        <MappingFragment StoreEntitySet="completed_services">
+          <ScalarProperty Name="id_completed_service" ColumnName="id_completed_service" />
+          <ScalarProperty Name="id_lab_technician" ColumnName="id_lab_technician" />
+          <ScalarProperty Name="id_order" ColumnName="id_order" />
+          <ScalarProperty Name="id_service" ColumnName="id_service" />
+          <ScalarProperty Name="id_analyzer" ColumnName="id_analyzer" />
+          <ScalarProperty Name="completion_time_days" ColumnName="completion_time_days" />
+          <ScalarProperty Name="service_status" ColumnName="service_status" />
+          <ScalarProperty Name="comletion_date" ColumnName="comletion_date" />
+          <ScalarProperty Name="is_archived" ColumnName="is_archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="emp_service">
+      <EntityTypeMapping TypeName="polikModel.emp_service">
+        <MappingFragment StoreEntitySet="emp_service">
+          <ScalarProperty Name="id_emp_service" ColumnName="id_emp_service" />
+          <ScalarProperty Name="id_service" ColumnName="id_service" />
+          <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+          <ScalarProperty Name="is_archived" ColumnName="is_archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="insurers">
+      <EntityTypeMapping TypeName="polikModel.insurers">
+        <MappingFragment StoreEntitySet="insurers">
+          <ScalarProperty Name="id_insurer" ColumnName="id_insurer" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="INN" ColumnName="INN" />
+          <ScalarProperty Name="payment_account" ColumnName="payment_account" />
+          <ScalarProperty Name="BIK" ColumnName="BIK" />
+          <ScalarProperty Name="is_archived" ColumnName="is_archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="insurers_bills">
+      <EntityTypeMapping TypeName="polikModel.insurers_bills">
+        <MappingFragment StoreEntitySet="insurers_bills">
+          <ScalarProperty Name="id_insurers_bill" ColumnName="id_insurers_bill" />
+          <ScalarProperty Name="id_order" ColumnName="id_order" />
+          <ScalarProperty Name="id_accountant" ColumnName="id_accountant" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="is_archived" ColumnName="is_archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="polikModel.orders">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="id_order" ColumnName="id_order" />
+          <ScalarProperty Name="id_patient" ColumnName="id_patient" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="order_compition_days" ColumnName="order_compition_days" />
+          <ScalarProperty Name="total_cost" ColumnName="total_cost" />
+          <ScalarProperty Name="is_archived" ColumnName="is_archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="patients">
+      <EntityTypeMapping TypeName="polikModel.patients">
+        <MappingFragment StoreEntitySet="patients">
+          <ScalarProperty Name="id_patient" ColumnName="id_patient" />
+          <ScalarProperty Name="id_insurer" ColumnName="id_insurer" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="passport_series" ColumnName="passport_series" />
+          <ScalarProperty Name="passport_number" ColumnName="passport_number" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="insurance_number" ColumnName="insurance_number" />
+          <ScalarProperty Name="insurance_type" ColumnName="insurance_type" />
+          <ScalarProperty Name="is_archived" ColumnName="is_archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="polikModel.roles">
+        <MappingFragment StoreEntitySet="roles">
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="is_archived" ColumnName="is_archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="services">
+      <EntityTypeMapping TypeName="polikModel.services">
+        <MappingFragment StoreEntitySet="services">
+          <ScalarProperty Name="id_service" ColumnName="id_service" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="completion_period_days" ColumnName="completion_period_days" />
+          <ScalarProperty Name="average_deviation_days" ColumnName="average_deviation_days" />
+          <ScalarProperty Name="is_archived" ColumnName="is_archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="polikModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="is_archived" ColumnName="is_archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="visit_logs">
+      <EntityTypeMapping TypeName="polikModel.visit_logs">
+        <MappingFragment StoreEntitySet="visit_logs">
+          <ScalarProperty Name="id_log" ColumnName="id_log" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="visit_time" ColumnName="visit_time" />
+          <ScalarProperty Name="is_archived" ColumnName="is_archived" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

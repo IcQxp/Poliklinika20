@@ -1,0 +1,73 @@
+﻿<Page x:Class="Poliklinika20.Pages.Lists.CompletedServices"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Poliklinika20.Pages.Lists"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CompletedServices">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="ServicesDataGrid" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id_service}"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding cost}"/>
+                <DataGridTextColumn Header="Время выполнения (в днях)" Binding="{Binding completion_period_days}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="AnalyserDataGrid" Grid.Row="2" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="ID" Binding="{Binding id_analyzer}"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding name}"/>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="UserDataGrid" Grid.Row="2" Grid.Column="2" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="ID" Binding="{Binding id_user}"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding last_name}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding first_name}"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding patronymic}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="CompletedServicesDataGrid" Grid.ColumnSpan="3" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id_completed_service}"/>
+                <DataGridTextColumn Header="Фамилия работника" Binding="{Binding users.last_name}"/>
+                <DataGridTextColumn Header="Имя работника" Binding="{Binding users.first_name}"/>
+                <DataGridTextColumn Header="Наим. услуги" Binding="{Binding services.name}"/>
+                <DataGridTextColumn Header="Анализатор" Binding="{Binding analyzers.name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" >
+
+            <Button Content="Добавить" Click="Button_Click" HorizontalAlignment="Left" Margin="5"  Height="30" Width="90"/>
+            <Button Content="Измененить" Click="Button_Click_1"  Grid.Column="1" Margin="5" Height="30" Width="90"/>
+            <Button Content="Сохранить" Click="Button_Click_2"  Grid.Column="1" Margin="5" Height="30" Width="90" HorizontalAlignment="Right"/>
+        </StackPanel>
+    </Grid>
+
+
+
+</Page>
