@@ -1,0 +1,35 @@
+﻿<Page x:Class="Poliklinika20.Pages.Lists.UsersList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Poliklinika20.Pages.Lists"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UsersList">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Users}" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id_user}"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding id_role}"/>
+                <DataGridTextColumn Header="Логин" Binding="{Binding login}"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding password}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding last_name}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding first_name}"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding patronymic}"/>
+                <DataGridTextColumn Header="Удалён" Binding="{Binding is_archived}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Content="Добавить" Click="AddButton_Click" Height="30" Width="90"/>
+            <Button Content="Изменить" Click="EditButton_Click" Height="30" Width="90" Margin="5,0,0,0"/>
+            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5,0,0,0" Height="30" Width="90"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Илья\Файлики\Коды\Poliklinika20\App.xaml
-7-299540208
+13550599450
 2-973498431
-26-184402305
-18-1755768909
-MainWindow.xaml;Pages\Auth.xaml;Pages\Lists\CompletedServices.xaml;Pages\Lists\Orders.xaml;Pages\Lists\ServicesList.xaml;Pages\Main.xaml;Pages\Lists\PatientsList.xaml;
+321638106277
+19907831774
+MainWindow.xaml;Pages\Auth.xaml;Pages\Edit\AddEditAnalyzerPage.xaml;Pages\Edit\AddEditUserPage.xaml;Pages\Lists\AnalyzersList.xaml;Pages\Lists\CompletedServices.xaml;Pages\Lists\LogsList.xaml;Pages\Lists\Orders.xaml;Pages\Lists\ReportsList.xaml;Pages\Lists\ServicesList.xaml;Pages\Lists\UsersList.xaml;Pages\Main.xaml;Pages\Lists\PatientsList.xaml;
 
-True
+False
 

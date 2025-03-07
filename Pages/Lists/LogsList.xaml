@@ -1,0 +1,65 @@
+﻿<Page x:Class="Poliklinika20.Pages.Lists.LogsList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Poliklinika20.Pages.Lists"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LogsList">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel
+    Name="NavContainer"
+   
+    Orientation="Horizontal"
+    HorizontalAlignment="Right"
+    VerticalAlignment="Center">
+            <TextBlock Text="Фильтровка: "/>
+            <ComboBox 
+        Width="150" 
+        SelectedIndex="0"
+        SelectionChanged="ComboBoxFitlter_Selected"
+        Name="ComboBoxFitlterUsers"
+        Margin="10 0"
+        Visibility="Collapsed"
+        />
+
+            <ComboBox 
+        Width="150" 
+        SelectedIndex="0"
+        SelectionChanged="ComboBoxFitlter_Selected"
+        Name="ComboBoxFitlter">
+                <ComboBoxItem Content="Нет" />
+                <ComboBoxItem Content="Пользователь"/>
+                <ComboBoxItem Content="Удалённые"/>
+            </ComboBox>
+            <Button 
+        Content="Удалить"
+        HorizontalAlignment="Right"
+        Margin="20 0"
+        Grid.Row="1" 
+        Width="100" 
+        Height="30"
+        Name="ButtomDelLog"
+        Click="ButtomDelLog_Click"/>
+        </StackPanel>
+
+        <DataGrid  Grid.Row="1" x:Name="LogsDataGrid" Loaded="LogsDataGrid_Loaded" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+
+
+                <DataGridTextColumn Header="ID" Binding="{Binding id_log}"/>
+                <DataGridTextColumn Header="Пользователь" Binding="{Binding users.full_name}"/>
+                <DataGridTextColumn Header="Логин" Binding="{Binding users.login}"/>
+                <DataGridTextColumn Header="Дата входа" Binding="{Binding visit_time, StringFormat=d}"/>
+                <DataGridTextColumn Header="Удалён" Binding="{Binding is_archived}"/>
+                <DataGridTextColumn Header="IP" Binding="{Binding ip}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -44,6 +47,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -128,7 +132,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Edit\AddEditAnalyzerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Edit\AddEditUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Lists\AnalyzersList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Lists\CompletedServices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Lists\LogsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,7 +156,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Lists\ReportsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Lists\ServicesList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Lists\UsersList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,14 +181,32 @@
     <Compile Include="Pages\Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Edit\AddEditAnalyzerPage.xaml.cs">
+      <DependentUpon>AddEditAnalyzerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Edit\AddEditUserPage.xaml.cs">
+      <DependentUpon>AddEditUserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Lists\AnalyzersList.xaml.cs">
+      <DependentUpon>AnalyzersList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Lists\CompletedServices.xaml.cs">
       <DependentUpon>CompletedServices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Lists\LogsList.xaml.cs">
+      <DependentUpon>LogsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Lists\Orders.xaml.cs">
       <DependentUpon>Orders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Lists\ReportsList.xaml.cs">
+      <DependentUpon>ReportsList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Lists\ServicesList.xaml.cs">
       <DependentUpon>ServicesList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Lists\UsersList.xaml.cs">
+      <DependentUpon>UsersList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -216,6 +262,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="logo.ico" />
+    <Resource Include="logo.png" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\Logo.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

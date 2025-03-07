@@ -35,7 +35,8 @@ namespace Poliklinika20.DB
         public string insurance_number { get; set; }
         public string insurance_type { get; set; }
         public bool is_archived { get; set; }
-    
+        public string full_name => $"{first_name} {last_name}";
+
         public virtual insurers insurers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orders> orders { get; set; }

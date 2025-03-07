@@ -32,3 +32,15 @@ D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\Complete
 D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\Orders.g.cs
 D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\CompletedServices.baml
 D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\Orders.baml
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\ReportsList.g.cs
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\ReportsList.baml
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\LogsList.g.cs
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\LogsList.baml
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\AnalyzersList.g.cs
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\AnalyzersList.baml
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Edit\AddEditAnalyzerPage.g.cs
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Edit\AddEditAnalyzerPage.baml
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Edit\AddEditUserPage.g.cs
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\UsersList.g.cs
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Edit\AddEditUserPage.baml
+D:\Илья\Файлики\Коды\Poliklinika20\obj\Debug\Pages\Lists\UsersList.baml

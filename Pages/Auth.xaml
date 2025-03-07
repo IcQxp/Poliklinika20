@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Auth">
 
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             
         <TextBlock>
@@ -20,10 +20,21 @@
         <TextBlock>
             Пароль
             </TextBlock>
-            <PasswordBox x:Name="Password">
+            <StackPanel Orientation="Horizontal">
 
-            </PasswordBox>
-            <StackPanel Grid.Row="2" Height="160" Grid.ColumnSpan="2" Orientation="Vertical" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="90"/>
+                    </Grid.ColumnDefinitions>
+                    <PasswordBox x:Name="Password" Width="230"/>
+                    <TextBox x:Name="PasswordTB" Width="230" Visibility="Hidden"/>
+                    <Button x:Name="ShowPwd" Content="Показать" Grid.Column="2" Click="ShowPwd_Click"/>
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="2" Height="160" Grid.ColumnSpan="2" Orientation="Vertical" x:Name="CaptchaContainer" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Height="100">
                     <Grid>
                         <StackPanel Width="250" Orientation="Horizontal" Name="SymnolsPanel" HorizontalAlignment="Center" VerticalAlignment="Center"/>

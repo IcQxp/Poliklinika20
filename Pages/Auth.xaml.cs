@@ -21,16 +21,19 @@ namespace Poliklinika20.Pages
     /// </summary>
     public partial class Auth : Page
     {
+        private bool firstTry;
         Random _random = new Random();
         string stringCaptcha;
+        private DateTime blockDate;
 
         public Auth()
         {
             InitializeComponent();
             UpdateCaptcha();
+            firstTry = true;
         }
 
-         private void UpdateCaptcha()
+        private void UpdateCaptcha()
         {
             stringCaptcha = " ";
             SymnolsPanel.Children.Clear();
@@ -98,7 +101,7 @@ namespace Poliklinika20.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (Login.Text.Trim() == "" || Password.Password.Trim() == "" || CaptchaBox.Text.Trim()=="")
+            if (Login.Text.Trim() == "" || Password.Password.Trim() == "" || (!firstTry && CaptchaBox.Text.Trim() == ""))
             {
                 MessageBox.Show("Необходимо заполнить все поля");
                 return;
@@ -106,18 +109,125 @@ namespace Poliklinika20.Pages
 
             users user = polikEntities6.GetContext().users.FirstOrDefault(u => u.login == Login.Text && u.password == Password.Password);
 
-            if (user !=null && CaptchaBox.Text.Trim().ToLower() == stringCaptcha.Trim().ToLower())
-                { MessageBox.Show("Успешный вход");
-                ((MainWindow)Application.Current.MainWindow).user = user;
-                NavigationService.Navigate(new Main());
+            if (firstTry)
+            {
+                if (user != null)
+                {
+                    var lastVisit = polikEntities6.GetContext().visit_logs.OrderByDescending(x => x.id_log).FirstOrDefault(visit => visit.users.id_user == user.id_user);
+                    DateTime now = DateTime.Now;
+                    // 20:00                                 ! 20:01 <= 20:02 && 20:02 <= 20:03
+                    if (lastVisit == null || !(lastVisit.visit_time.AddMinutes(1) <= now && now <= lastVisit.visit_time.AddMinutes(3)))
+                    {
+
+                        MessageBox.Show("Успешный вход");
+                        ((MainWindow)Application.Current.MainWindow).user = user;
+                        ((MainWindow)Application.Current.MainWindow).StartSessionTimer();
+
+                        Random rnd = new Random();
+                        string ip = rnd.Next(255) + "." + rnd.Next(255) + "." + rnd.Next(255) + "." + rnd.Next(255);
+
+                        polikEntities6.GetContext().visit_logs.Add(new visit_logs { id_user = user.id_user, ip = ip, is_archived = false, visit_time = now });
+                        polikEntities6.GetContext().SaveChanges();
+                        NavigationService.Navigate(new Main());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Идёт кварцевание");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Неправильный логин/пароль/капча");
+                    CaptchaContainer.Visibility = Visibility.Visible;
+                    firstTry = false;
+                    UpdateCaptcha();
+                    Login.Text = "";
+                    Password.Password = ""; 
+                }
             }
             else
             {
-                MessageBox.Show("Неправильный логин/пароль/капча");
-                UpdateCaptcha();
-                Login.Text = "";
-                Password.Password = "";
+                if (blockDate < DateTime.Now)
+                {
+                    if (user != null && CaptchaBox.Text.Trim().ToLower() == stringCaptcha.Trim().ToLower())
+                    {
+                        var lastVisit = polikEntities6.GetContext().visit_logs.OrderByDescending(x => x.id_log).FirstOrDefault(visit => visit.users.id_user == user.id_user);
+                        DateTime now = DateTime.Now;
+                        // 20:00                                            ! 20:01 <= 20:02 && 20:02 <= 20:03
+                        if (lastVisit == null || !(lastVisit.visit_time.AddMinutes(1) <= now && now <= lastVisit.visit_time.AddMinutes(3)))
+                        {
+
+                            MessageBox.Show("Успешный вход");
+                            ((MainWindow)Application.Current.MainWindow).user = user;
+                            ((MainWindow)Application.Current.MainWindow).StartSessionTimer();
+
+                            Random rnd = new Random();
+                            string ip = rnd.Next(255) + "." + rnd.Next(255) + "." + rnd.Next(255) + "." + rnd.Next(255);
+
+                            polikEntities6.GetContext().visit_logs.Add(new visit_logs { id_user = user.id_user, ip = ip, is_archived = false, visit_time = now });
+                            polikEntities6.GetContext().SaveChanges();
+                            NavigationService.Navigate(new Main());
+                        }
+                        else
+                        {
+                            MessageBox.Show("Идёт кварцевание");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неправильный логин/пароль/капча");
+                        UpdateCaptcha();
+                        Login.Text = "";
+                        Password.Password = "";
+                        blockDate = DateTime.Now.AddSeconds(10);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Вход заблокирован до: " + blockDate.ToString());
+                }
+
             }
+
+
+        }
+
+        private void ShowPwd_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Password.Visibility == Visibility.Visible)
+            {
+                PasswordTB.Text = Password.Password;
+                Password.Visibility = Visibility.Hidden;
+                PasswordTB.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Password.Password = PasswordTB.Text;
+                Password.Visibility = Visibility.Visible;
+                PasswordTB.Visibility = Visibility.Hidden;
+
+            }
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            var mw = ((MainWindow)Application.Current.MainWindow);
+
+            mw.user = null;
+            mw.BackBtn.Visibility = Visibility.Hidden;
+
+            var _TimerCalc = mw._TimerCalc;
+            if (_TimerCalc != null)
+            {
+                _TimerCalc.Stop();
+                _TimerCalc = null;
+            }
+
+            mw._TimerSeconds = 60;
+            mw.TimerBlock.Text = "";
+
 
         }
     }

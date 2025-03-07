@@ -88,14 +88,12 @@ namespace Poliklinika20.Pages.Lists
                 return;
             }
 
-            // Обновляем выбранный элемент
             compl.users = user;
             compl.services = service;
             compl.analyzers = analyzer;
 
-            // Обновляем отображение данных в DataGrid
-            CompletedServicesDataGrid.ItemsSource = null; // Сбрасываем источник данных
-            CompletedServicesDataGrid.ItemsSource = list; // Устанавливаем обновленный источник данных
+            CompletedServicesDataGrid.ItemsSource = null; 
+            CompletedServicesDataGrid.ItemsSource = list;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -118,7 +116,7 @@ namespace Poliklinika20.Pages.Lists
                     polikEntities6.GetContext().SaveChanges();
                     var orderNow = polikEntities6.GetContext().orders
                         .Where(or => or.total_cost == cost && or.id_patient == _patient.id_patient)
-                        .OrderByDescending(or => or.id_order) // Предполагается, что id_order является автоинкрементным
+                        .OrderByDescending(or => or.id_order)
                         .FirstOrDefault();
                     foreach (var elem in list)
                     {

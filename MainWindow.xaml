@@ -11,10 +11,27 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Style="{StaticResource DopFon}" Loaded="StackPanel_Loaded">
+        <Grid Style="{StaticResource DopFonGrid}" Loaded="StackPanel_Loaded" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock 
+    x:Name="TimerBlock" 
+    Text="" 
+    HorizontalAlignment="Left" 
+    VerticalAlignment="Center" 
+    Margin="10 0 0 0" 
+    Foreground="Black"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                
+            <Image Source="/logo.png"/>
+            <TextBlock Text="Поликлиника" VerticalAlignment="Center"/>
+            </StackPanel>
 
-            <Button x:Name="BackBtn" Content="Назад" Click="Button_Click" Height="30" Width="90" HorizontalAlignment="Right" Margin="5" Visibility="Hidden"/>
-        </StackPanel>
+            <Button Grid.Column="2" x:Name="BackBtn" Content="Назад" Click="Button_Click" Height="30" Width="90" HorizontalAlignment="Right" Margin="5" Visibility="Visible"/>
+        </Grid>
         <Frame Margin="10" x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" ContentRendered="MainFrame_ContentRendered"/>
     </Grid>
 </Window>

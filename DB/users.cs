@@ -11,7 +11,9 @@ namespace Poliklinika20.DB
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.IO;
+    using System.Windows.Media.Imaging;
+
     public partial class users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,6 +34,27 @@ namespace Poliklinika20.DB
         public string patronymic { get; set; }
         public byte[] photo { get; set; }
         public bool is_archived { get; set; }
+
+        public string full_name => $"{first_name} {last_name}";
+        public BitmapImage image
+        {
+           get
+            {
+                if (photo != null)
+                {
+
+                    Stream memoryStream = new MemoryStream(photo);
+
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.StreamSource = memoryStream;
+                    bitmapImage.EndInit();
+
+                    return bitmapImage;
+                }
+                else return new BitmapImage();
+            }
+        }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<completed_services> completed_services { get; set; }
